@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np
 import os, sys
 
-
 image     = Image.open('./assets/referencia.png')
 font_type = ImageFont.truetype('./assets/GreatVibes-Regular.ttf', 60)
 draw      = ImageDraw.Draw(image)
