@@ -17,7 +17,7 @@ tabelaEmail   = tabelaCSV['email'].values
 
 serverGmail    = smtplib.SMTP('smtp.gmail.com', 587)
 gmail_user     = ''
-gmail_passwprd = ''
+gmail_password = ''
 
 def geradorDeCertificado(nome):
     draw.text(xy=(510,525), text=nome, fill='black', font=font_type)
