@@ -21,13 +21,14 @@ context        = ssl.create_default_context()
 gmail_user     = ''
 gmail_password = ''
 
-def geradorDeImagem(nome):
+def gerarCertificado(nome):
     draw.text(xy=(260,170), text=nome, fill='white', font=font_type)
     image.save('./certificados/{nome}.png'.format(nome=nome))
 
-def gerarCertificados():
+def gerarCertificadosCSV():
     for i in colunaPessoas:
-        geradorDeImagem(i)
+        gerarCertificado(i)
+
 
 def gerarMensagem():
     print(gmail_user,  'email enviado pelo script')
@@ -43,4 +44,4 @@ def enviarEmail():
     finally:
         server.quit()
 
-gerarCertificados()
+gerarCertificadosCSV()
