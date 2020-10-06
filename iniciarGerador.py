@@ -6,32 +6,32 @@ from email import encoders
 import smtplib, ssl
 import pandas as pd
 import numpy as np
-import os, sys 
+import os, sys
+
+tabelaCSV      = pd.read_csv('./pessoas.csv')
+colunaPessoas  = tabelaCSV['certificadoNome'].values
+colunaEmail    = pd.DataFrame(tabelaCSV, columns = ['email'])
 
 image     = Image.open('./assets/referencia.png')
-font_type = ImageFont.truetype('./assets/GreatVibes-Regular.ttf', 60)
+font_type = ImageFont.truetype('./assets/GreatVibes-Regular.ttf', 40)
 draw      = ImageDraw.Draw(image)
-
-tabelaCSV     = pd.read_csv('./pessoas.csv')
-tabelaPessoas = tabelaCSV['certificadoNome'].values
-tabelaEmail   = tabelaCSV['email'].values
 
 server         = smtplib.SMTP('smtp.gmail.com', 587)
 context        = ssl.create_default_context()
-destinatario   = ''
 gmail_user     = ''
 gmail_password = ''
 
-def geradorDeCertificado(nome):
-    draw.text(xy=(510,528), text=nome, fill='black', font=font_type)
+def geradorDeImagem(nome):
+    draw.text(xy=(260,170), text=nome, fill='white', font=font_type)
     image.save('./certificados/{nome}.png'.format(nome=nome))
 
-def gerarCertificadoDoCSV():
-    for i in tabelaPessoas:
-        geradorDeCertificado(i)
+def gerarCertificados():
+    for i in colunaPessoas:
+        geradorDeImagem(i)
 
 def gerarMensagem():
-    server.sendmail(gmail_user, 'mbkaue@gmail.com', 'email enviado pelo scrpt\nass,\nkaue')
+    print(gmail_user,  'email enviado pelo script')
+#server.sendmail
 
 def enviarEmail():
     try:
@@ -43,5 +43,4 @@ def enviarEmail():
     finally:
         server.quit()
 
-def main():
-    print('message')
+gerarCertificados()
