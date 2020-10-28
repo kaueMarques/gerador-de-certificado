@@ -7,41 +7,37 @@ import smtplib, ssl
 import pandas as pd
 import numpy as np
 import os, sys
+import random
 
-tabelaCSV      = pd.read_csv('./pessoas.csv')
-colunaPessoas  = tabelaCSV['certificadoNome'].values
-colunaEmail    = pd.DataFrame(tabelaCSV, columns = ['email'])
+tabelaCSV       = pd.read_csv('./pessoas.csv')
+colunaPessoas   = tabelaCSV['certificadoNome'].values
+colunaEmail     = pd.DataFrame(tabelaCSV, columns = ['email'])
 
-image     = Image.open('./assets/referencia.png')
-font_type = ImageFont.truetype('./assets/GreatVibes-Regular.ttf', 40)
-draw      = ImageDraw.Draw(image)
+image           = Image.open('./assets/referencia.png')
+draw            = ImageDraw.Draw(image)
 
-server         = smtplib.SMTP('smtp.gmail.com', 587)
-context        = ssl.create_default_context()
-gmail_user     = ''
-gmail_password = ''
+cod             = random.randint(11111, 99999)
+cod_img         = str(cod)
 
-def gerarCertificado(nome):
-    draw.text(xy=(260,170), text=nome, fill='white', font=font_type)
-    image.save('./certificados/{nome}.png'.format(nome=nome))
+font_type       = ImageFont.truetype('./assets/GreatVibes-Regular.ttf', 40)
+font_verifier   = ImageFont.truetype('./assets/Cairo-Light.ttf', 18)
+
+server           = smtplib.SMTP('smtp.gmail.com', 587)
+context          = ssl.create_default_context()
+sender_pass      = ''
+sender_address   = ''
+gmail_password   = ''
+receiver_address = ''
+
+def gerarCertificado(nome, verifier):
+    draw.text(xy=(140,200), text=nome, fill='white', font=font_type)
+    draw.text(xy=(780,510), text=verifier, fill='white', font=font_verifier)
+    image.save('certificado.png')
 
 def gerarCertificadosCSV():
     for i in colunaPessoas:
         gerarCertificado(i)
 
 
-def gerarMensagem():
-    print(gmail_user,  'email enviado pelo script')
-#server.sendmail
-
-def enviarEmail():
-    try:
-        server.starttls(context=context)
-        server.login(gmail_user, gmail_password)
-        gerarMensagem()
-    except Exception as e:
-        print('erro:\n', e)
-    finally:
-        server.quit()
-
-gerarCertificadosCSV()
+gerarCertificado('Kauê Marques Barbosa', f'verificador: CN-{cod_img}')
+print('Verificador',cod_img)
