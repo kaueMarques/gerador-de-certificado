@@ -16,7 +16,7 @@ colunaEmail     = pd.DataFrame(tabelaCSV, columns = ['email'])
 image           = Image.open('./assets/referencia.png')
 draw            = ImageDraw.Draw(image)
 
-cod             = random.randint(11111, 99999)
+cod             = random.randint(100000, 999999)
 cod_img         = str(cod)
 
 font_type       = ImageFont.truetype('./assets/GreatVibes-Regular.ttf', 40)

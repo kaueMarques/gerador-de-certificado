@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;    
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.all{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nameApp{
+    margin: 5%;
+}
+
+.form-page{
+    align-items: center;
+    text-align: center;
+    
+}
+
+.resultado{
+    align-items: center;
+    margin: 5%;
+    height: 10vh;
+    width: 100%;
+}
+
+.space{
+    flex-direction: column;
+    margin: 5%;
+}
+
+.ok{ background-color: chartreuse; }
+
+.fail{ background-color: tomato;}

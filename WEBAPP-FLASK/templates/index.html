@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>Verificador</title> 
+{% endblock %}
+
+{% block body %}
+<div class="all">
+       
+    <div class="nameApp">
+        <h1>Verifique a declaração</h1>
+    </div>
+
+
+    <div class="form-page">
+
+        <form action="" method="post">
+
+            <div class="space">
+                <label>Código Verificador</label>
+                <br>
+                <input type="text" id="codigo" class="field">
+            </div>
+            
+            <input type="button" value="checar" id="btn-verificar" class="btn-verificar">
+        </form>
+
+        <div id="resultado" class="resultado">
+            <resultado></resultado>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
